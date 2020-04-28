@@ -2,15 +2,30 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
 const StatisticsLine = ({text, value}) => {
+  //muotoillaan, tehdään vähän nätimpi
   let prosMer = ""
   let numero = "" + value
   numero = numero.slice(0,4)
-  if(text === "positive"){prosMer = "%"}
-  return (<tr><td>{text}</td><td>{numero}{prosMer}</td></tr>)
+  //tarkistetaan onko positive sarake mikä vaatii % merkin
+  if(!text.localeCompare("positive")){  
+    prosMer = "%"
+  }
+  return (
+      <tr>
+        <td>
+          {text}
+        </td>
+        <td>
+          {numero}{prosMer}
+        </td>
+      </tr>
+    )
 }
 
 const Statistics = ({good, neutral, bad}) =>{
   let amount = good + neutral + bad
+  //jos ei ole arvosteltu, palauta suoraan
+  //muuten jatka
   if(amount === 0){
     return(
       <div>
@@ -24,11 +39,15 @@ const Statistics = ({good, neutral, bad}) =>{
   return(
     <div>
       <h1>statistics</h1>
-      <StatisticsLine text = "good " value = {good}/>
-      <StatisticsLine text = "neutral " value = {neutral}/>
-      <StatisticsLine text = "bad " value = {bad}/>
-      <StatisticsLine text = "average " value = {avg}/>
-      <StatisticsLine text = "positive " value = {positive}/>
+      <table>
+        <tbody>
+          <StatisticsLine text = "good" value = {good}/>
+          <StatisticsLine text = "neutral" value = {neutral}/>
+          <StatisticsLine text = "bad" value = {bad}/>
+          <StatisticsLine text = "average" value = {avg}/>
+          <StatisticsLine text = "positive" value = {positive}/>
+        </tbody>
+      </table>
     </div>
   )
 }
