@@ -13,7 +13,6 @@ const addPoints = (allPoints, selected, setAll) => {
   const copy = [...allPoints]
   copy[selected] += 1
   setAll(copy)
-  console.log(allPoints)
 }
 
 const mostVotes = (points) => {
