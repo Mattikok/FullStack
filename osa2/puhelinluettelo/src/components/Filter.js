@@ -15,4 +15,4 @@ const Filter = ({newFilter, handleFilterChange}) =>{
     )
 }
 
-export default Filter;
+export default Filter
