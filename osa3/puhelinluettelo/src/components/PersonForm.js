@@ -1,29 +1,30 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 
 const PersonForm = ({addPerson, newName, newNumber, handleNameChange, handleNumberChange}) => {
 
 
-    return(
+  return(
     <form onSubmit={addPerson}>
-        <div>
+      <div>
         name:  
         <input 
-            value={newName}
-            onChange={handleNameChange}
+          value={newName}
+          onChange={handleNameChange}
         />
-        </div>
-        <div>
+      </div>
+      <div>
             number:
-            <input
-                value={newNumber}
-                onChange={handleNumberChange}
-            />
-        </div>
-        <div>
+        <input
+          value={newNumber}
+          onChange={handleNumberChange}
+        />
+      </div>
+      <div>
         <button type="submit">add</button>
-        </div>
+      </div>
     </form>
-    )
+  )
 }
 
 export default PersonForm

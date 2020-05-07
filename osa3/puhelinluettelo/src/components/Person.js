@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 
 const Person = ({person, delPerson})=>{
-    return(
+  return(
     <p>{person.name} {person.number} <button onClick={delPerson}>delete</button> </p>)
 }
 
