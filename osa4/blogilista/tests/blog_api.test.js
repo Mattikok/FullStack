@@ -142,6 +142,32 @@ describe('when there is initially some blogs saved', () => {
       const check = blogsAtEnd.find((n) => n.author === 'matiti')
       expect(check.likes).toBe(1)
     })
+
+    test('delete an existing blog', async () => {
+      const newBlog = {
+        title: 'testi1',
+        author: 'matititi',
+        url: 'hmmmm.com',
+      }
+
+      await api
+        .post('/api/blogs')
+        .send(newBlog)
+        .expect(200)
+        .expect('Content-type', /application\/json/)
+
+      const blogsss = await helper.blogsInDb()
+      const added = blogsss.find((n) => n.author === 'matititi')
+      expect(blogsss).toContain(added)
+
+      await api
+        .delete(`/api/blogs/${added.id}`)
+        .expect(204)
+
+      const blogsAtEnd = await helper.blogsInDb()
+      const check = blogsAtEnd.some((n) => n.author === 'matititi')
+      expect(check).toBe(false)
+    })
   })
 })
 

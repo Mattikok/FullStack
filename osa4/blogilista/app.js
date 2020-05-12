@@ -30,4 +30,6 @@ app.use('/api/blogs', blogsRouter)
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
 
+mongoose.set('useFindAndModify', false)
+
 module.exports = app
