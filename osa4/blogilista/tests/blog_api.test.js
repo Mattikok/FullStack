@@ -113,7 +113,7 @@ describe('when there is initially some blogs saved', () => {
     })
   })
 
-  describe('modifyin existing blog', () => {
+  describe('modifying existing blog', () => {
     test('modify likes', async () => {
       const newBlog = {
         title: 'testi1',
