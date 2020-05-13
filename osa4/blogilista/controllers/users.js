@@ -1,9 +1,18 @@
+/* eslint-disable consistent-return */
 const bcrypt = require('bcrypt')
 const usersRouter = require('express').Router()
 const User = require('../models/user')
 
 usersRouter.post('/', async (request, response) => {
   const { body } = request
+
+  if (!body.username || !body.password) {
+    return response.status(400).json({ error: 'content missing' })
+  }
+
+  if (body.password.length < 3) {
+    return response.status(400).json({ error: 'password must be atleast 3 characters long' })
+  }
 
   const saltRounds = 10
   const passwordHash = await bcrypt.hash(body.password, saltRounds)
