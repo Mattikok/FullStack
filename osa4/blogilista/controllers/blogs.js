@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
 const blogsRouter = require('express').Router()
 const jwt = require('jsonwebtoken')
@@ -12,7 +13,15 @@ blogsRouter.get('/', async (request, response) => {
   response.json(blogs.map((blog) => blog.toJSON()))
 })
 
-// eslint-disable-next-line consistent-return
+blogsRouter.get('/:id', async (request, response) => {
+  const blog = await Blog.findById(request.params.id)
+  if (blog) {
+    response.json(blog.toJSON())
+  } else {
+    response.status(404).end()
+  }
+})
+
 blogsRouter.post('/', async (request, response) => {
   const { body, token } = request
 
